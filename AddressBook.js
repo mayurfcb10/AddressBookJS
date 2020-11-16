@@ -236,17 +236,49 @@ editContact(contact, "Shaman", "lastName");
 console.log(contact);
 //console.log(addressBookArray);
 
-
 // Find the contact and delete from the address book
 function findAndDeleteContact(firstName, lastName) {
   let contact = findContact(firstName, lastName);
   addressBookArray.splice(addressBookArray.indexOf(contact), 1);
-  //addressBookArray.pop(contact);
 }
 
 findAndDeleteContact("Bill", "Shaman");
 console.log(addressBookArray);
 
 // count the contacts in the AddressBook
-let countContact = addressBookArray.reduce((count ) => count += 1 , 0);
-console.log(countContact);
+function countContact() {
+  let countContact = addressBookArray.reduce((count) => (count += 1), 0);
+  console.log(countContact);
+}
+
+// Add Contact to addressbook ensuring no duplicate contact exists
+// function addContact(contactToBeAdded) {
+//   if (
+//     addressBookArray.find(
+//       (contact) => contact.firstName == contactToBeAdded.firstName
+//     )
+//   )
+//     console.log("Contact Already present");
+//   else 
+//   addressBookArray.push(contact);
+// }
+
+let contactToBeAdded = new ContactDetails(
+  "Bill",
+  "Shaman",
+  "Pallemo",
+  "North London",
+  "London",
+  "343422",
+  "91 8787877890",
+  "gigi@msw.com"
+);
+
+let duplicateCheck = addressBookArray.find(element => element.firstName == contactToBeAdded.firstName);
+if(duplicateCheck != null)
+    console.log("Duplicate element cannot be added");
+else
+    addressBookArray.push(contactToBeAdded); 
+
+// addContact(contactToBeAdded);
+console.log(addressBookArray);
