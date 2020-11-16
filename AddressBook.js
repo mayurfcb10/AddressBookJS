@@ -4,7 +4,7 @@ class ContactDetails {
   // Constructor
   constructor(...params) {
     this.firstName = params[0];
-    this.lastname = params[1];
+    this.lastName = params[1];
     this.address = params[2];
     this.city = params[3];
     this.state = params[4];
@@ -27,14 +27,14 @@ class ContactDetails {
       throw "FirstName should start with capital letter and alteast 3 characters";
   }
 
-  get lastname() {
-    return this._lastname;
+  get lastName() {
+    return this._lastName;
   }
 
-  set lastname(lastname) {
+  set lastName(lastName) {
     let lastNameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
-    if (lastNameRegex.test(lastname)) {
-      this._lastname = lastname;
+    if (lastNameRegex.test(lastName)) {
+      this._lastName = lastName;
     } else
       throw "LastName should start with capital letter and alteast 3 characters";
   }
@@ -112,7 +112,7 @@ class ContactDetails {
       "First Name: " +
       this.firstName +
       " Last Name: " +
-      this.lastname +
+      this.lastName +
       " Address: " +
       this.address +
       " City: " +
@@ -129,7 +129,7 @@ class ContactDetails {
   }
 }
 
-// Created Address book array and added contacts to it 
+// Created Address book array and added contacts to it
 let addressBookArray = new Array();
 try {
   addressBookArray.push(
@@ -184,3 +184,53 @@ try {
   console.error(e);
 }
 console.log(addressBookArray.toString());
+
+// Edit the contact details
+function findContact(firstName, lastName) {
+  let contactObj;
+  addressBookArray.forEach((contact) => {
+    if (contact.firstName == firstName && contact.lastName == lastName) {
+      contactObj = contact;
+    }
+  });
+  return contactObj;
+}
+
+function editContact(contactObj, newValue, property) {
+  try {
+    switch (property) {
+      case "firstName":
+        contact.firstName = newValue;
+        break;
+      case "lastName":
+        contactObj.lastName = newValue;
+        break;
+      case "address":
+        contact.address = newValue;
+        break;
+      case "city":
+        contact.city = newValue;
+        break;
+      case "state":
+        contact.state = newValue;
+        break;
+      case "zip":
+        contact.zip = newValue;
+        break;
+      case "phoneNumber":
+        contact.phoneNumber = newValue;
+        break;
+      case "email":
+        contact.email = newValue;
+        break;
+      default:
+        break;
+    }
+  } catch (e) {
+    console.error("Unable to edit Contact");
+  }
+}
+
+let contact = findContact("Bill", "Gates");
+editContact(contact, "Shaman", "lastName");
+console.log(contact);
