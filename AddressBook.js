@@ -234,3 +234,15 @@ function editContact(contactObj, newValue, property) {
 let contact = findContact("Bill", "Gates");
 editContact(contact, "Shaman", "lastName");
 console.log(contact);
+//console.log(addressBookArray);
+
+
+// Find the contact and delete from the address book
+function findAndDeleteContact(firstName, lastName) {
+  let contact = findContact(firstName, lastName);
+  addressBookArray.splice(addressBookArray.indexOf(contact), 1);
+  //addressBookArray.pop(contact);
+}
+
+findAndDeleteContact("Bill", "Shaman");
+console.log(addressBookArray);
