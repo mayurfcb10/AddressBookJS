@@ -251,17 +251,16 @@ function countContact() {
   console.log(countContact);
 }
 
-// Add Contact to addressbook ensuring no duplicate contact exists
-// function addContact(contactToBeAdded) {
-//   if (
-//     addressBookArray.find(
-//       (contact) => contact.firstName == contactToBeAdded.firstName
-//     )
-//   )
-//     console.log("Contact Already present");
-//   else 
-//   addressBookArray.push(contact);
-// }
+//Add Contact to addressbook ensuring no duplicate contact exists
+function addContact(contactToBeAdded) {
+  if (
+    addressBookArray.find(
+      (contact) => contact.firstName == contactToBeAdded.firstName
+    )
+  )
+    console.log("Contact Already present");
+  else addressBookArray.push(contact);
+}
 
 let contactToBeAdded = new ContactDetails(
   "Bill",
@@ -274,11 +273,41 @@ let contactToBeAdded = new ContactDetails(
   "gigi@msw.com"
 );
 
-let duplicateCheck = addressBookArray.find(element => element.firstName == contactToBeAdded.firstName);
-if(duplicateCheck != null)
-    console.log("Duplicate element cannot be added");
-else
-    addressBookArray.push(contactToBeAdded); 
-
-// addContact(contactToBeAdded);
+let duplicateCheck = addressBookArray.find(
+  (element) => element.firstName == contactToBeAdded.firstName
+);
+if (duplicateCheck != null) console.log("Duplicate element cannot be added");
+else addressBookArray.push(contactToBeAdded);
 console.log(addressBookArray);
+
+// Search contact by city or state
+function searchContactByCityOrState(property, value, AddressBook) {
+  let addressBookFilter;
+  switch (property) {
+    case "city":
+      addressBookFilter = addressBookArray.filter(
+        (contact) => contact.city == value
+      );
+      break;
+    case "state":
+      addressBookFilter = addressBookArray.filter(
+        (contact) => contact.state == value
+      );
+      break;
+  }
+  return addressBookFilter;
+}
+
+let contacts = searchContactByCityOrState(
+  "city",
+  "San Francisco",
+  addressBookArray
+);
+contacts.forEach((foundCityPerson) =>
+  console.log(foundCityPerson.firstName + " " + foundCityPerson.lastName)
+);
+
+contacts = searchContactByCityOrState("state", "Wales", addressBookArray);
+contacts.forEach((foundCityPerson) =>
+  console.log(foundCityPerson.firstName + " " + foundCityPerson.lastName)
+);
