@@ -129,15 +129,58 @@ class ContactDetails {
   }
 }
 
-let contactDetails = new ContactDetails(
-  "Bill",
-  "Gates",
-  "BakerStreet",
-  "San Francisco",
-  "California",
-  "345654",
-  "91 9434435566",
-  "billgates@gmail.com"
-);
-
-console.log(contactDetails.toString());
+// Created Address book array and added contacts to it 
+let addressBookArray = new Array();
+try {
+  addressBookArray.push(
+    new ContactDetails(
+      "Bill",
+      "Gates",
+      "BakerStreet",
+      "San Francisco",
+      "California",
+      "345654",
+      "91 9434435566",
+      "billgates@gmail.com"
+    )
+  );
+  addressBookArray.push(
+    new ContactDetails(
+      "Jennifer",
+      "Aniston",
+      "B11 Street",
+      "San Francisco",
+      "California",
+      "434324",
+      "91 8787567894",
+      "jenniferA@gmail.com"
+    )
+  );
+  addressBookArray.push(
+    new ContactDetails(
+      "Johnny",
+      "Depp",
+      "C22 Street",
+      "Santa Clara",
+      "Alaska",
+      "453567",
+      "91 9876543211",
+      "jdepp@hotmail.com"
+    )
+  );
+  addressBookArray.push(
+    new ContactDetails(
+      "Brad",
+      "Pit",
+      "D33 Street",
+      "Lamington",
+      "Wales",
+      "232323",
+      "91 6545454546",
+      "braddpit@celeb.ac.us"
+    )
+  );
+} catch (e) {
+  console.error(e);
+}
+console.log(addressBookArray.toString());
